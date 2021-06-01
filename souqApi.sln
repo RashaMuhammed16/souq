@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{418905A5-DB49-4BD6-B684-35D046C67328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{418905A5-DB49-4BD6-B684-35D046C67328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{D798BC59-1F9D-4540-9E86-9A73ED8E0A08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{D798BC59-1F9D-4540-9E86-9A73ED8E0A08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{0B0D785E-160A-43B9-AF7B-196C710DFEF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D798BC59-1F9D-4540-9E86-9A73ED8E0A08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D798BC59-1F9D-4540-9E86-9A73ED8E0A08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D798BC59-1F9D-4540-9E86-9A73ED8E0A08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B0D785E-160A-43B9-AF7B-196C710DFEF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B0D785E-160A-43B9-AF7B-196C710DFEF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B0D785E-160A-43B9-AF7B-196C710DFEF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B0D785E-160A-43B9-AF7B-196C710DFEF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
