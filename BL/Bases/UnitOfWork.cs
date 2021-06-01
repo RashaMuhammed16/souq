@@ -15,13 +15,20 @@ namespace BL.Bases
     {
         #region Common Properties
         private DbContext EC_DbContext { get; set; }
-       
-
+        #region Common Properties
+        UserManager<ApplicationUserIdentity> manger;
+        RoleManager<IdentityRole> role;
+        UnitOfWork(DbContext context, UserManager<ApplicationUserIdentity> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            this.manger = userManager;
+            this.role = roleManager;
+            this.EC_DbContext = context;
+        }
 
         #endregion
 
-        #region Constructors
-        
+       // #region Constructors
+
         #endregion
 
         #region Methods
@@ -37,8 +44,8 @@ namespace BL.Bases
         #endregion
 
 
-       
-      
+
+
         public OrderDetailsRepository orderDetails;//=> throw new NotImplementedException();
         public OrderDetailsRepository OrderDetails
         {
@@ -50,9 +57,9 @@ namespace BL.Bases
             }
         }
 
-       
 
-      
+
+
         public ProductWishListRepository productWishList;//=> throw new NotImplementedException();
         public ProductWishListRepository ProductWishList
         {
@@ -81,7 +88,7 @@ namespace BL.Bases
             get
             {
                 if (shipper == null)
-                    shipper= new ShipperRepository(EC_DbContext);
+                    shipper = new ShipperRepository(EC_DbContext);
                 return shipper;
             }
         }
@@ -92,8 +99,18 @@ namespace BL.Bases
             get
             {
                 if (address == null)
-                   address = new BillingAddressRepository(EC_DbContext);
+                    address = new BillingAddressRepository(EC_DbContext);
                 return address;
+            }
+        }
+        public AccountRepository accountt;//=> throw new NotImplementedException();
+        public AccountRepository account
+        {
+            get
+            {
+                if (accountt == null)
+                    accountt = new AccountRepository(EC_DbContext, manger, role);
+                return accountt;
             }
         }
         public BrandsRepository brand;//=> throw new NotImplementedException();
@@ -107,11 +124,11 @@ namespace BL.Bases
             }
         }
         public RateRepository rate;//=> throw new NotImplementedException();
-        public RateRepository Rate 
+        public RateRepository Rate
         {
             get
             {
-                if (rate== null)
+                if (rate == null)
                     rate = new RateRepository(EC_DbContext);
                 return rate;
             }
@@ -124,6 +141,26 @@ namespace BL.Bases
                 if (mod == null)
                     mod = new ModelRepository(EC_DbContext);
                 return mod;
+            }
+        }
+        public SubCategoryRepository subCategory_Repository;//=> throw new NotImplementedException();
+        public SubCategoryRepository SubCategoryRepository
+        {
+            get
+            {
+                if (subCategory_Repository == null)
+                    subCategory_Repository = new SubCategoryRepository(EC_DbContext);
+                return subCategory_Repository;
+            }
+        }
+        public ProductRepository product;//=> throw new NotImplementedException();
+        public ProductRepository Product
+        {
+            get
+            {
+                if (product == null)
+                   product= new ProductRepository(EC_DbContext);
+                return product;
             }
         }
 

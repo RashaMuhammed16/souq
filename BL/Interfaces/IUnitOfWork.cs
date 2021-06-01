@@ -23,6 +23,8 @@ namespace BL.Interfaces
         ProductWishListRepository ProductWishList { get; }
         OrderDetailsRepository OrderDetails { get; }
         RateRepository Rate { get; }
-
+        AccountRepository account { get; }
+        SubCategoryRepository SubCategoryRepository { get; }
+        ProductRepository Product { get; }
     }
 }
