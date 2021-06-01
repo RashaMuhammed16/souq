@@ -12,9 +12,6 @@ namespace BL.ViewModel
         public int ID { get; set; }
         [Display(Name = "Total Price")]
         public double productTotal { get; set; }
-        
-       
-       
         public int productQuantity { get; set; }
         public int ProductID { get; set; }
         public int orderID { get; set; }

@@ -116,18 +116,39 @@ namespace BL.Bases
                 return rate;
             }
         }
-        public ModelRepository mod;//=> throw new NotImplementedException();
-        public ModelRepository Mod
+        public ModelRepository model;//=> throw new NotImplementedException();
+        public ModelRepository Model
         {
             get
             {
-                if (mod == null)
-                    mod = new ModelRepository(EC_DbContext);
-                return mod;
+                if (model == null)
+                    model = new ModelRepository(EC_DbContext);
+                return model;
+            }
+        }
+        public CategoryRepository category;//=> throw new NotImplementedException();
+        public CategoryRepository Category
+
+        {
+            get
+            {
+                if (category == null)
+                    category = new CategoryRepository(EC_DbContext);
+                return category;
+            }
+        }
+        public OrderRepository order;//=> throw new NotImplementedException();
+        public OrderRepository Order
+        {
+            get
+            {
+                if (order == null)
+                    order = new OrderRepository(EC_DbContext);
+                return order;
             }
         }
 
-        public ModelRepository Model => throw new NotImplementedException();
+        //public ModelRepository Model => throw new NotImplementedException();
 
         public BillingAddressRepository Wishlist => throw new NotImplementedException();
 

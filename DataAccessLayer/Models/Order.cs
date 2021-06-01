@@ -8,10 +8,8 @@ namespace DataAccessLayer.Models
 {
      public class Order
     {
-        
-        
-            public int Id { get; set; }
-            public int OrderNumber { get; set; }
+        public int Id { get; set; }
+         public int OrderNumber { get; set; }
         public double totalPrice { get; set; }
         public string Orderdate { get; set; }
         public string ApplicationUserIdentity_Id { get; set; }
