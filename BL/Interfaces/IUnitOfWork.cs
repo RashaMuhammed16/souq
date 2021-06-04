@@ -25,6 +25,8 @@ namespace BL.Interfaces
         CategoryRepository Category { get; }
         OrderRepository Order{ get; }
         AccountRepository account { get; }
+        ProductRepository Product { get; }
+        SubCategoryRepository SubCategoryRepository { get; }
 
     }
 }

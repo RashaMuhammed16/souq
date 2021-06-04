@@ -27,7 +27,7 @@ namespace BL.Bases
 
         #endregion
 
-       // #region Constructors
+        // #region Constructors
 
         #endregion
 
@@ -94,7 +94,7 @@ namespace BL.Bases
         }
 
         public BillingAddressRepository address;//=> throw new NotImplementedException();
-        public BillingAddressRepository Address
+        public BillingAddressRepository BillingAddress
         {
             get
             {
@@ -180,19 +180,16 @@ namespace BL.Bases
             get
             {
                 if (product == null)
-                   product= new ProductRepository(EC_DbContext);
+                    product = new ProductRepository(EC_DbContext);
                 return product;
             }
         }
 
-        //public ModelRepository Model => throw new NotImplementedException();
+       
 
-        public BillingAddressRepository Wishlist => throw new NotImplementedException();
 
-        public OrderDetailsRepository OrderProduct => throw new NotImplementedException();
 
-        public RateRepository Review => throw new NotImplementedException();
 
-        public BillingAddressRepository BillingAddress => throw new NotImplementedException();
     }
-}
+    }
+

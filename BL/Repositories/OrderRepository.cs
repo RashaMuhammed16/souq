@@ -16,7 +16,7 @@ namespace BL.Repositories
         {
             this.EC_DbContext = EC_DbContext;
         }
-        #region CRUB
+     
 
         public List<Order> GetAllOrder()
         {
@@ -40,19 +40,40 @@ namespace BL.Repositories
         {
             return GetAny(l => l.Id == order.Id);
         }
-        
-          public Order GetOrderById(int id)
-          {
-              return GetFirstOrDefault(l => l.Id == id);
-          }
-        
+
+        public Order GetOrderById(int id)
+        {
+            return GetFirstOrDefault(l => l.Id == id);
+        }
+
 
 
         public List<Order> OrderByTimeDecending()
         {
             return EC_DbContext.Set<Order>().OrderByDescending(o => o.Orderdate).Include(o => o.ApplicationUserIdentity_Id).ToList();
         }
-        #endregion
+        public int CountEntityForSpeCifcUser(string userID)
+        {
+            return DbSet.Where(o => o.ApplicationUserIdentity_Id == userID).Count();
+        }
+        public override IEnumerable<Order> GetPageRecords(int pageSize, int pageNumber)
+        {
+            pageSize = (pageSize <= 0) ? 10 : pageSize;
+            pageNumber = (pageNumber < 1) ? 0 : pageNumber - 1;
+
+            var kk = DbSet.Skip(pageNumber * pageSize).Take(pageSize).Include(order => order.appUser);
+
+            return DbSet.Skip(pageNumber * pageSize).Take(pageSize).Include(order => order.appUser);
+        }
+        public IEnumerable<Order> GetPageRecordsForSpeceficUser(string userID, int pageSize, int pageNumber)
+        {
+            pageSize = (pageSize <= 0) ? 10 : pageSize;
+            pageNumber = (pageNumber < 1) ? 0 : pageNumber - 1;
+
+            return DbSet.Where(o => o.ApplicationUserIdentity_Id == userID).Skip(pageNumber * pageSize).Take(pageSize).Include(order => order.appUser);
+
+
+        }
 
     }
 }

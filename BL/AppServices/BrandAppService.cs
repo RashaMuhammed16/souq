@@ -24,9 +24,9 @@ namespace BL.AppServices
 
             return Mapper.Map<List<BrandViewModel>>(TheUnitOfWork.Brand.GetAllBrand());
         }
-        public ShipperViewModel GetBrand(int id)
+        public BrandViewModel GetBrand(int id)
         {
-            return Mapper.Map<ShipperViewModel>(TheUnitOfWork.Brand.GetById(id));
+            return Mapper.Map<BrandViewModel>(TheUnitOfWork.Brand.GetById(id));
         }
 
 
@@ -41,10 +41,10 @@ namespace BL.AppServices
             return result;
         }
 
-        public bool UpdatShipper(ShipperViewModel shipperViewModel)
+        public bool UpdatBrand(BrandViewModel brandViewModel)
         {
-            var shipper = Mapper.Map<Brand>(shipperViewModel);
-            TheUnitOfWork.Brand.Update(shipper);
+            var brand = Mapper.Map<Brand>(brandViewModel);
+            TheUnitOfWork.Brand.Update(brand);
             TheUnitOfWork.Commit();
 
             return true;

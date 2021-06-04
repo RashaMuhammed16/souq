@@ -17,7 +17,7 @@ namespace BL.AppServices
         {
 
         }
-        public RateViewModel SaveNewReview(Rate rate)
+        public RateViewModel SaveNewRate(Rate rate)
         {
 
             bool result = false;

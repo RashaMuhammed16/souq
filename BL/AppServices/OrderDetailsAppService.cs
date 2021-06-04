@@ -25,10 +25,7 @@ namespace BL.AppServices
 
                 return Mapper.Map<List<OrderDetailsViewModel>>(TheUnitOfWork.OrderDetails.GetAllOrderDetails());
             }
-            //public CartViewModel GetCart(int id)
-            //{
-            //    return Mapper.Map<CartViewModel>(TheUnitOfWork.Cart.GetById(id));
-            //}
+            
 
 
 
