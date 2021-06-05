@@ -7,14 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using  DataAccessLayer.Models;
+using BL.Bases;
 
 namespace BL.AppServices
 {
-   public class ProductAppService:Bases.AppServiceBase
+   public class ProductAppService: BaseAppService
     {
-        public ProductAppService(IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
-        {
-        }
         public IEnumerable<ProductViewModel> GetAllProduct()
         {
             IEnumerable<Product> allProducts = TheUnitOfWork.Product.GetAllProduct();

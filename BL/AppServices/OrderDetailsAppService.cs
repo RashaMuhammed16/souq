@@ -12,14 +12,10 @@ using System.Threading.Tasks;
 namespace BL.AppServices
 {
     
-        public class OrderDetailsAppService : AppServiceBase
-        {
-            public OrderDetailsAppService(IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
-            {
+        public class OrderDetailsAppService : BaseAppService
+    {
 
-            }
             #region CURD
-
             public List<OrderDetailsViewModel> GetAllOrderDetails()
             {
 

@@ -12,14 +12,19 @@ namespace BL.Repositories
 {
    public class AccountRepository:BaseRepository<ApplicationUserIdentity>
     {
-       
+        private DbContext EC_DbContext;
         private readonly UserManager<ApplicationUserIdentity> manger;
         private RoleManager<IdentityRole> role;
-     public AccountRepository(DbContext context,UserManager<ApplicationUserIdentity>usermanger,RoleManager<IdentityRole>role):base(context)
-        {
-            this.role = role;
-            this.manger = usermanger;
+        //public AccountRepository(DbContext context,UserManager<ApplicationUserIdentity>usermanger,RoleManager<IdentityRole>role):base(context)
+        //  {
+        //      this.role = role;
+        //      this.manger = usermanger;
+        //      this.EC_DbContext = EC_DbContext;
 
+        //  }
+        public AccountRepository(DbContext EC_DbContext) : base(EC_DbContext)
+        {
+            this.EC_DbContext = EC_DbContext;
         }
         public ApplicationUserIdentity GetAccountById(string id)
         {
@@ -94,8 +99,6 @@ namespace BL.Repositories
 
             //}
             IdentityResult result = await manger.UpdateAsync(user);
-
-
 
             return true;
         }

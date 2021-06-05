@@ -12,7 +12,8 @@ namespace BL.Repositories
      public class CategoryRepository: BaseRepository<Category>
     {
         private DbContext EC_DbContext;
-        public CategoryRepository(DbContext EC_DbContext) :base(EC_DbContext)
+
+        public CategoryRepository(DbContext EC_DbContext) : base(EC_DbContext)
         {
             this.EC_DbContext = EC_DbContext;
         }
@@ -34,9 +35,6 @@ namespace BL.Repositories
             Delete(id);
         }
 
-        internal bool CheckCategoryExists(Category category)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
+

@@ -13,12 +13,13 @@ using System.Threading.Tasks;
 
 namespace BL.AppServices
 {
-    public class CategoryAppService: AppServiceBase
+    public class CategoryAppService: BaseAppService
     {
-        public CategoryAppService(IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
-        {
+        //public CategoryAppService(IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
+        //{
 
-        }
+        // }
+
         #region CURD
         public List<CategoryViewModel> GetAllCategory()
         {
@@ -65,11 +66,11 @@ namespace BL.AppServices
             return result;
         }
 
-        public bool CheckCategoryExists(CategoryViewModel categoryViewModel)
+        /*public bool CheckCategoryExists(CategoryViewModel categoryViewModel)
         {
             Category category = Mapper.Map<Category>(categoryViewModel);
             return TheUnitOfWork.Category.CheckCategoryExists(category);
-        }
+        }*/
         #endregion
     }
 }

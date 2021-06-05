@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Models;
+﻿using BL.Bases;
+using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BL.Repositories
 {
-  public class ProductRepository:Bases.BaseRepository<Product>
+  public class ProductRepository:BaseRepository<Product>
     {
         private DbContext EC_DbContext;
 

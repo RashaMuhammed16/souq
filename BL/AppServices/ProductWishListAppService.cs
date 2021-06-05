@@ -11,12 +11,8 @@ using System.Threading.Tasks;
 
 namespace BL.AppServices
 {
-    public class ProductWishListAppService : AppServiceBase
-    {
-        public ProductWishListAppService(IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
-        {
-
-        }
+    public class ProductWishListAppService : BaseAppService
+    { 
         public List<ProductWishListViewModel> GetAllProductWishList()
         {
 

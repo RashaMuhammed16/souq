@@ -11,12 +11,9 @@ using System.Threading.Tasks;
 
 namespace BL.AppServices
 {
-    public class ModelAppService : AppServiceBase
+    public class ModelAppService : BaseAppService
     {
-        public ModelAppService(IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
-        {
-
-        }
+      
         #region CURD
 
         public List<ModelViewModel> GetAllModel()

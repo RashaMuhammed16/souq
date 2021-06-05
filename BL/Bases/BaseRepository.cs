@@ -120,10 +120,10 @@ namespace BL.Bases
         {
             EntityEntry<T> dbEntityEntry = DbContext.Entry(entity);
 
-            //if (dbEntityEntry.State == EntityState.Detached)
-            //{
-            //    DbSet.Attach(entity);
-            //}
+            if (dbEntityEntry.State == EntityState.Detached)
+            {
+                DbSet.Attach(entity);
+            }
             dbEntityEntry.State = EntityState.Modified;
         }
 

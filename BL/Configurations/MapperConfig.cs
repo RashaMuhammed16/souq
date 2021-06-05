@@ -7,38 +7,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccessLayer;
 
 namespace BL.Configurations
 {
-    public class AutoMapperProfile : Profile
+    public static class MapperConfig
     {
-        public AutoMapperProfile()
+        public static IMapper Mapper { get; set; }
+        static MapperConfig()
         {
+            var config = new MapperConfiguration(
+                cfg =>
+                {
+                    cfg.CreateMap<Order, OrderViewModel>().ReverseMap();
+                    cfg.CreateMap<ApplicationUserIdentity, UserViewModel>().ReverseMap();
+                    cfg.CreateMap<OrderDetails, OrderDetailsViewModel>().ReverseMap();
+                    cfg.CreateMap<Shipper, ShipperViewModel>().ReverseMap();
+                    cfg.CreateMap<Category, CategoryViewModel>().ReverseMap();
+                    cfg.CreateMap<Product, ProductViewModel>().ReverseMap();
+                    cfg.CreateMap<Sub_Catogery, Sub_CategoryViewModel>().ReverseMap();
+                    cfg.CreateMap<ProductWishList, ProductWishListViewModel>().ReverseMap();
+                    cfg.CreateMap<Payment, PaymentViewModel>().ReverseMap();
+                    cfg.CreateMap<Brand, BrandViewModel>().ReverseMap();
+                    cfg.CreateMap<Model, ModelViewModel>().ReverseMap();
+                    cfg.CreateMap<BillingAddress,BillingAddressModelView>().ReverseMap();
+                    cfg.CreateMap<Rate, RateViewModel>().ReverseMap();
+                    //cfg.CreateMap<IdentityResult, ResultStatue>().ReverseMap();
 
-      
-
-
-            CreateMap<OrderDetails, OrderDetailsViewModel>()
-                 .ForMember(vm => vm.productName, m => m.MapFrom(u => u.Product.Name)).ReverseMap()
-                 .ForMember(m => m.Order, m => m.Ignore())
-                 .ForMember(m => m.Product, m => m.Ignore());
-
-          
-            CreateMap<Rate, RateViewModel>()
-                //.ForMember(vm => vm.UserFullName, vm => vm.MapFrom(m => m.User.FullName))
-                .ReverseMap();
-            CreateMap<Rate,Rate>().ReverseMap()
-                .ForMember(r => r.User, r => r.Ignore())
-                .ForMember(r => r.Product, r => r.Ignore());
-
-           
-            CreateMap<ProductWishList, ProductWishListViewModel>().ReverseMap();
-
-          
-            CreateMap<Payment, PaymentViewModel>().ReverseMap();
-            CreateMap<BillingAddress, BillingAddressModelView>().ReverseMap();
-            CreateMap<Shipper,ShipperViewModel>().ReverseMap();
-            CreateMap<Brand, BrandViewModel>().ReverseMap();
+                });
+            Mapper = config.CreateMapper();
         }
     }
 }

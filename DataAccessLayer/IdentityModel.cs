@@ -73,8 +73,8 @@ namespace DataAccessLayer
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder
-               .UseSqlServer("Data Source=.;Initial Catalog=Souq;Integrated Security=True"
+           optionsBuilder
+              .UseSqlServer("Data Source=.;Initial Catalog=SouqDB;Integrated Security=True"
                , options => options.EnableRetryOnFailure());
         }
         protected override void OnModelCreating(ModelBuilder builder)

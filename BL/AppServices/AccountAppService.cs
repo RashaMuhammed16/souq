@@ -14,74 +14,69 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
+using BL.Bases;
+using Microsoft.AspNetCore.Http;
+using Velites.Utility.SharedLibrary;
 
 namespace BL.AppServices
 {
-    class AccountAppService:Bases.AppServiceBase
+    public class AccountAppService : BaseAppService
     {
-      IConfiguration configuration;
-        AccountAppService(IConfiguration configurations,IUnitOfWork iunitOfWork,IMapper mapper,IConfiguration configuration):base(iunitOfWork,mapper)
+        //private readonly IConfiguration _Configration;
+        IConfiguration configuration;
+        public AccountAppService(IConfiguration configurations)
         {
-            this.configuration = configurations;
+          this.configuration = configurations;
         }
+
         public List<UserViewModel> GetAllAccounts()
         {
-            return Mapper.Map<List<UserViewModel>>(TheUnitOfWork.account.GetAll().Where(ac=>ac.isDeleted==false).ToList());
+            return Mapper.Map<List<UserViewModel>>(TheUnitOfWork.Account.GetAll().Where(ac => ac.isDeleted == false).ToList());
         }
         public UserViewModel GetAccountById(string id)
         {
 
-            return Mapper.Map<UserViewModel>(TheUnitOfWork.account.GetAccountById(id));
+            return Mapper.Map<UserViewModel>(TheUnitOfWork.Account.GetAccountById(id));
 
         }
         public bool DeleteAccount(string id)
         {
-           var user= Mapper.Map<ApplicationUserIdentity>( GetAccountById(id));
+            var user = Mapper.Map<ApplicationUserIdentity>(GetAccountById(id));
             user.isDeleted = true;
-            TheUnitOfWork.account.Update(user);
+            TheUnitOfWork.Account.Update(user);
             return TheUnitOfWork.Commit() > new int();
         }
-        public async Task<ApplicationUserIdentity>Find(string name,string Password)
+        public async Task<ApplicationUserIdentity> Find(string name, string Password)
         {
-            ApplicationUserIdentity user =await TheUnitOfWork.account.Find(name, Password);
+            ApplicationUserIdentity user = await TheUnitOfWork.Account.Find(name, Password);
             if (user != null && user.isDeleted == false)
                 return user;
             return null;
         }
         public async Task<ApplicationUserIdentity> FindByName(string userName)
         {
-            ApplicationUserIdentity user = await TheUnitOfWork.account.GetByName(userName);
+            ApplicationUserIdentity user = await TheUnitOfWork.Account.GetByName(userName);
 
             if (user != null && user.isDeleted == false)
                 return user;
             return null;
         }
-        public async Task<IdentityResult> Register(UserViewModel user)
-        {
-            bool isExist = await checkUserNameExist(user.UserName);
-            if (isExist)
-                return IdentityResult.Failed(new IdentityError
-                { Code = "error", Description = "user name already exist" });
 
-            ApplicationUserIdentity identityUser = Mapper.Map<UserViewModel, ApplicationUserIdentity>(user);
-            var result = await TheUnitOfWork.account.Register(identityUser);
-            // create user cart and wishlist 
-            if (result.Succeeded)
-            {
-                //CreateUserCartAndWishlist(identityUser.Id);
-            }
-            return result;
+        private IdentityResult StatusCode(int status500InternalServerError, Response response)
+        {
+            throw new NotImplementedException();
         }
+
         public async Task<bool> checkUserNameExist(string userName)
         {
-            var user = await TheUnitOfWork.account.GetByName(userName);
+            var user = await TheUnitOfWork.Account.GetByName(userName);
             return user == null ? false : true;
         }
         public async Task<IdentityResult> AssignRole(string userid, string rolename)
         {
             if (userid == null || rolename == null)
                 return null;
-            return await TheUnitOfWork.account.AssignRole(userid, rolename);
+            return await TheUnitOfWork.Account.AssignRole(userid, rolename);
         }
         public async Task<bool> UpdatePassword(string userID, string newPassword)
         {
@@ -92,24 +87,24 @@ namespace BL.AppServices
             //    return TheUnitOfWork.Account.UpdateAccount(identityUser);
 
 
-            ApplicationUserIdentity identityUser = await TheUnitOfWork.account.GetById(userID);
+            ApplicationUserIdentity identityUser = await TheUnitOfWork.Account.GetById(userID);
             identityUser.PasswordHash = newPassword;
-            return await TheUnitOfWork.account.updatePassword(identityUser);
+            return await TheUnitOfWork.Account.updatePassword(identityUser);
 
         }
         public async Task<bool> Update(UserViewModel user)
         {
 
-            ApplicationUserIdentity identityUser = await TheUnitOfWork.account.GetById(user.Id);
+            ApplicationUserIdentity identityUser = await TheUnitOfWork.Account.GetById(user.Id);
             var oldPassword = identityUser.PasswordHash;
             Mapper.Map(user, identityUser);
             identityUser.PasswordHash = oldPassword;
-            return await TheUnitOfWork.account.UpdateAccount(identityUser);
+            return await TheUnitOfWork.Account.UpdateAccount(identityUser);
 
         }
         public async Task<IEnumerable<string>> GetUserRoles(ApplicationUserIdentity user)
         {
-            return await TheUnitOfWork.account.GetUserRoles(user);
+            return await TheUnitOfWork.Account.GetUserRoles(user);
         }
         public async Task<dynamic> CreateToken(ApplicationUserIdentity user)
         {
@@ -131,9 +126,9 @@ namespace BL.AppServices
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
 
             var token = new JwtSecurityToken(
-               
+
                 audience: configuration["JWT:ValidAudience"],
-                  issuer: configuration["JWT:ValidIssuer"],
+                 issuer: configuration["JWT:ValidIssuer"],
                 expires: DateTime.Now.AddHours(3),
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
@@ -149,8 +144,18 @@ namespace BL.AppServices
         }
         public int CountEntity()
         {
-            return TheUnitOfWork.account.CountEntity();
+            return TheUnitOfWork.Account.CountEntity();
         }
+        public async Task<IdentityResult> Register(UserViewModel user)
+        {
+            bool isExist = await checkUserNameExist(user.UserName);
+            if (isExist)
+                return IdentityResult.Failed(new IdentityError
+                { Code = "error", Description = "user name already exist" });
 
+            ApplicationUserIdentity identityUser = Mapper.Map<UserViewModel, ApplicationUserIdentity>(user);
+            var result = await TheUnitOfWork.Account.Register(identityUser);
+            return result;
+        }
     }
 }

@@ -24,7 +24,5 @@ namespace BL.Interfaces
         void Delete(T entity);
         void Delete(int entityId);
 
-
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Models;
+﻿using BL.Bases;
+using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BL.Repositories
 {
-   public class SubCategoryRepository:Bases.BaseRepository<Sub_Catogery>
+   public class SubCategoryRepository:BaseRepository<Sub_Catogery>
     {
    
       public  SubCategoryRepository(DbContext context):base(context)

@@ -11,14 +11,9 @@ using System.Threading.Tasks;
 
 namespace BL.AppServices
 {
-    public class PaymentAppService : AppServiceBase
+    public class PaymentAppService : BaseAppService
     {
-        public PaymentAppService(IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
-        {
-
-        }
         #region CURD
-
         public List<PaymentViewModel> GetAllPayments()
         {
 

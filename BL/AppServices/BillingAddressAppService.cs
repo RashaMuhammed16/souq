@@ -11,12 +11,8 @@ using System.Threading.Tasks;
 
 namespace BL.AppServices
 {
-   public class BillingAddressAppService : AppServiceBase
+   public class BillingAddressAppService : BaseAppService
     {
-        public BillingAddressAppService(IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
-        {
-
-        }
         #region CURD
 
         public List<BillingAddressModelView> GetAllBillingAddress()
